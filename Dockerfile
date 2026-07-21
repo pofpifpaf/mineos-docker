@@ -25,7 +25,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
 RUN mkdir /usr/games/minecraft \
   && cd /usr/games/minecraft \
   && git clone https://github.com/pofpifpaf/mineos-node.git . \
-  && git checkout 3342380e8cb114b2aadb72cab7e8a1dea42eb97 \
+  && git checkout 23342380e8cb114b2aadb72cab7e8a1dea42eb97 \
   && cp mineos.conf /etc/mineos.conf \
   && chmod +x webui.js mineos_console.js service.js
 
