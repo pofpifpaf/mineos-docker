@@ -33,7 +33,7 @@ RUN mkdir /usr/games/minecraft \
 RUN cd /usr/games/minecraft \
   && apt-get update \
   && apt-get install -y build-essential \
-  && npm install \
+  && npm ci \
   && apt-get remove --purge -y build-essential \
   && apt-get autoremove -y \
   && apt-get clean \
