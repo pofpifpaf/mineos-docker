@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:22.04
 LABEL MAINTAINER='William Dizon <wdchromium@gmail.com>'
 
 #update and accept all prompts
@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
   git \
   curl \
   rlwrap \
-  openjdk-16-jre-headless \
+  openjdk-17-jre-headless \
   openjdk-8-jre-headless \
   ca-certificates-java \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
