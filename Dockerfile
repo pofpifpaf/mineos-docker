@@ -16,10 +16,16 @@ RUN apt-get update && apt-get install -y \
   ca-certificates-java \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-#install node from nodesource following instructions: https://github.com/nodesource/distributions#debinstall
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
+RUN apt-get update \
+  && apt-get install -y ca-certificates curl gnupg \
+  && mkdir -p /etc/apt/keyrings \
+  && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key \
+    | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
+  && echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_16.x nodistro main" \
+    > /etc/apt/sources.list.d/nodesource.list \
+  && apt-get update \
   && apt-get install -y nodejs \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  && rm -rf /var/lib/apt/lists/*
 
 #download mineos from github
 RUN mkdir /usr/games/minecraft \
