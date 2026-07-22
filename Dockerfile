@@ -13,7 +13,6 @@ RUN apt-get update && apt-get install -y \
   rlwrap \
   openjdk-17-jre-headless \
   openjdk-8-jre-headless \
-  ca-certificates-java \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN apt-get update \
@@ -38,9 +37,10 @@ RUN mkdir /usr/games/minecraft \
 #build npm deps and clean up apt for image minimalization
 RUN cd /usr/games/minecraft \
   && apt-get update \
-  && apt-get install -y build-essential \
+  && apt-get install -y python3 make g++ \
   && npm ci \
-  && apt-get remove --purge -y build-essential \
+  && npm cache clean --force \
+  && apt-get remove --purge -y make g++ \
   && apt-get autoremove -y \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
